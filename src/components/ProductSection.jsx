@@ -1,28 +1,67 @@
+import { useCart } from '../CartContext'
+import hatImg from '../assets/hat.jpg'
+
 const products = [
-  { id: 1, name: 'Product One', price: 'KSh 2,500', tag: 'New' },
-  { id: 2, name: 'Product Two', price: 'KSh 1,800', tag: 'Popular' },
-  { id: 3, name: 'Product Three', price: 'KSh 3,200', tag: 'Limited' },
+  { id: 1, name: 'The Hat', price: 2500, tag: 'New', image: hatImg },
+  // add more products here as you get images:
+  // { id: 2, name: 'Product Two', price: 1800, tag: 'Popular', image: img2 },
+  // { id: 3, name: 'Product Three', price: 3200, tag: 'Limited', image: img3 },
 ]
 
-function ProductCard({ name, price, tag }) {
+function ProductCard({ product }) {
+  const { addItem } = useCart()
+  const { name, price, tag, image } = product
+
   return (
-    <div className="group bg-white border border-black flex flex-col relative overflow-hidden w-full" style={{ aspectRatio: '3/5' }}>
+    <div
+      className="group bg-white border border-black flex flex-col relative overflow-hidden w-full"
+      style={{ aspectRatio: '3/5' }}
+    >
+      {/* tag */}
       <span className="absolute top-4 left-4 text-[10px] tracking-[0.3em] uppercase bg-black text-white px-3 py-1 z-10">
         {tag}
       </span>
-      <div className="flex-1 bg-neutral-100 flex items-center justify-center">
-        <span className="text-neutral-300 text-xs tracking-widest uppercase">Image</span>
+
+      {/* image */}
+      <div className="flex-1 overflow-hidden">
+        {image ? (
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full bg-neutral-100 flex items-center justify-center">
+            <span className="text-neutral-300 text-xs tracking-widest uppercase">Image</span>
+          </div>
+        )}
       </div>
-      <div className="p-4 md:p-5 border-t border-black flex justify-between items-end">
+
+      {/* card footer */}
+      <div className="p-4 md:p-5 border-t border-black flex justify-between items-end bg-white">
         <div>
           <p className="text-xs tracking-[0.2em] uppercase text-neutral-400 mb-1">Vade</p>
           <p className="text-black font-semibold text-sm">{name}</p>
-          <p className="text-black text-xs mt-1">{price}</p>
+          <p className="text-black text-xs mt-1">KSh {price.toLocaleString()}</p>
         </div>
-        <button className="w-8 h-8 border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 text-black text-lg leading-none">
+
+        {/* add to cart */}
+        <button
+          onClick={() => addItem(product)}
+          className="group/btn relative w-9 h-9 border border-black flex items-center justify-center text-black text-xl leading-none transition-colors duration-200 hover:bg-black hover:text-white"
+        >
           +
+          {/* corner accents */}
+          <span className="absolute -inset-1 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200">
+            <span className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-black" />
+            <span className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-black" />
+            <span className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-black" />
+            <span className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-black" />
+          </span>
         </button>
       </div>
+
+      {/* bottom hover line */}
       <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-black group-hover:w-full transition-all duration-500" />
     </div>
   )
@@ -31,31 +70,33 @@ function ProductCard({ name, price, tag }) {
 function ProductSection() {
   const count = products.length
 
-  // responsive: 1 col on mobile, adapts on desktop based on count
-  const desktopGrid =
-    count === 1 ? 'md:flex md:justify-center' :
-    count === 2 ? 'md:flex md:justify-evenly' :
-    'md:grid md:grid-cols-3 md:gap-8'
+  const gridClass =
+    count === 1 ? 'flex justify-center' :
+    count === 2 ? 'flex justify-evenly gap-6' :
+    'grid grid-cols-1 md:grid-cols-3 gap-6'
 
-  const desktopCardWidth = count < 3 ? 'md:w-72' : ''
+  const cardWidth = count < 3 ? 'w-full max-w-xs' : 'w-full'
 
   return (
     <section id="products" className="bg-black min-h-[75vh] flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-20">
+
+      {/* section header */}
       <div className="flex items-center gap-6 mb-10 md:mb-16 w-full max-w-5xl">
         <div className="h-px flex-1 bg-white/20" />
         <h2 className="text-white text-xs tracking-[0.5em] uppercase whitespace-nowrap">Our Products</h2>
         <div className="h-px flex-1 bg-white/20" />
       </div>
 
-      {/* cards: single col on mobile, dynamic on desktop */}
-      <div className={`grid grid-cols-1 gap-6 w-full max-w-5xl ${desktopGrid}`}>
+      {/* cards */}
+      <div className={`${gridClass} w-full max-w-5xl`}>
         {products.map(p => (
-          <div key={p.id} className={desktopCardWidth}>
-            <ProductCard {...p} />
+          <div key={p.id} className={cardWidth}>
+            <ProductCard product={p} />
           </div>
         ))}
       </div>
 
+      {/* explore button */}
       <div className="mt-12 md:mt-16">
         <button className="group relative">
           <span className="block border border-white/40 text-white text-xs tracking-[0.35em] uppercase px-10 md:px-12 py-4 relative z-10 transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-black">

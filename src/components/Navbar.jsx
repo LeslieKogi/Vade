@@ -1,30 +1,25 @@
 import { Link } from 'react-router-dom'
+import { useCart } from '../CartContext'
 
 function Navbar() {
-  const cartCount = 0
+  const { cartCount } = useCart()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-10 py-5 mix-blend-difference pointer-events-none">
 
-      {/* LEFT — home link */}
       <Link to="/" className="pointer-events-auto text-white text-xs tracking-[0.35em] uppercase font-medium hover:opacity-60 transition-opacity">
         
       </Link>
 
-      {/* RIGHT — about + cart */}
-      <div className="flex items-center gap-8 pointer-events-auto">
-
-        {/* About link */}
+      <div className="flex items-center gap-6 md:gap-8 pointer-events-auto">
         <Link
           to="/about"
           className="group relative text-white text-xs tracking-[0.35em] uppercase hover:opacity-60 transition-opacity"
         >
           About
-          {/* underline slide */}
           <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
         </Link>
 
-        {/* Cart */}
         <Link to="/cart" className="group relative flex items-center">
           <div className="relative">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -45,7 +40,6 @@ function Navbar() {
             <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
           </span>
         </Link>
-
       </div>
     </nav>
   )

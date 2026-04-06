@@ -3,7 +3,7 @@ import { useState } from 'react'
 function ContactForm() {
   const [form, setForm] = useState({ name: '', message: '' })
 
-  const WHATSAPP_NUMBER = '254114093651' // ← replace with real number
+  const WHATSAPP_NUMBER = '254114093651' 
 
   const handleSend = () => {
     if (!form.name.trim() || !form.message.trim()) return
