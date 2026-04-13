@@ -5,13 +5,18 @@ function Navbar() {
   const { cartCount } = useCart()
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-10 py-5 mix-blend-difference pointer-events-none">
-
-      <Link to="/" className="pointer-events-auto text-white text-xs tracking-[0.35em] uppercase font-medium hover:opacity-60 transition-opacity">
-        
-      </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-end items-center px-6 md:px-10 py-5 mix-blend-difference pointer-events-none">
 
       <div className="flex items-center gap-6 md:gap-8 pointer-events-auto">
+
+        <Link
+          to="/"
+          className="group relative text-white text-xs tracking-[0.35em] uppercase font-medium hover:opacity-60 transition-opacity"
+        >
+          Home
+          <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
+        </Link>
+
         <Link
           to="/about"
           className="group relative text-white text-xs tracking-[0.35em] uppercase hover:opacity-60 transition-opacity"
@@ -33,6 +38,7 @@ function Navbar() {
               </span>
             )}
           </div>
+
           <span className="absolute -inset-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white" />
             <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white" />
@@ -40,6 +46,7 @@ function Navbar() {
             <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
           </span>
         </Link>
+
       </div>
     </nav>
   )

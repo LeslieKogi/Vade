@@ -1,3 +1,2 @@
-# React + Vite
+# Vade
 
-project.
