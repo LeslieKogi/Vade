@@ -1,8 +1,10 @@
 import Hero from '../components/Hero'
 import ProductSection from '../components/ProductSection'
 import ContactForm from '../components/ContactForm'
+import { useState } from 'react'
 
 function Home() {
+  const [search, setSearch] = useState('')
   return (
     <>
       <section id="home"><Hero /></section>

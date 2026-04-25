@@ -101,10 +101,10 @@ function Cart() {
                 {items.map(item => (
                   <div key={item.id} className="flex items-center gap-4 py-5">
 
-                    {/* thumbnail */}
+                    {/* thumbnail — fixed: item.imageUrl not item.image */}
                     <div className="w-14 h-14 border border-white/10 overflow-hidden shrink-0">
-                      {item.image ? (
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      {item.imageUrl ? (
+                        <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                       ) : (
                         <div className="w-full h-full bg-neutral-800" />
                       )}
@@ -195,7 +195,7 @@ function Cart() {
                 {/* address */}
                 <div className="relative">
                   <label className="text-[10px] tracking-[0.3em] uppercase text-white/30 block mb-2">
-                    Delivery Address
+                    Delivery Address - Central based delivery
                   </label>
                   <input
                     type="text"
