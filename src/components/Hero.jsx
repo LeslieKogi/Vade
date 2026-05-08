@@ -1,5 +1,7 @@
 import logo from '../assets/Vadesentencelogo.png'
 import model from '../assets/model1.jpg'
+import pic3 from '../assets/pic3.jpg'
+import pic14 from '../assets/pic14.jpg'
 
 function Hero() {
   return (
@@ -31,10 +33,10 @@ function Hero() {
 
         {/* model image — fills the entire half */}
         <img
-          src={model}
-          alt="Vade model"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
+  src={pic3}
+  alt="Vade model"
+  className="absolute inset-0 w-full h-full object-cover object-[center_49%] scale-110"
+/>
 
         {/* dark overlay — tweak opacity to taste */}
         <div className="absolute inset-0 bg-black/55" />
@@ -57,11 +59,11 @@ function Hero() {
             className="text-white font-black leading-none tracking-tight text-4xl md:text-5xl lg:text-6xl"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Everything<br />You Need.
+            <br />
           </h2>
 
           <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-xs hidden sm:block">
-            Curated products. Uncompromising quality. Delivered to your door.
+            Curated products. Uncompromising quality. 
           </p>
 
           {/* EDGY BUTTON */}
@@ -78,8 +80,8 @@ function Hero() {
 
         {/* scroll hint — desktop only */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-10">
-          <span className="text-white/30 text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-          <div className="w-px h-10 bg-white/20" />
+          <span className="text-white/30 text-[10px] tracking-[0.3em] uppercase"></span> {/* Removed the croll hint text */}
+          
         </div>
       </div>
 
